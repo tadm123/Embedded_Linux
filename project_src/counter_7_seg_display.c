@@ -13,12 +13,12 @@ BBB Expansion header pins        GPIO number        7seg display segment
 -------------------------------------------------------------------------
 P8.7                             GPIO_66                 a
 P8.8                             GPIO_67                 b
-P8.9                             GPIO_68                 c
+P8.9                             GPIO_69                 c
 P8.10                            GPIO_68                 h   //decimal point
-P8.11                            GPIO_68                 d
-P8.12                            GPIO_68                 e
-P8.14                            GPIO_68                 f
-P8.16                            GPIO_68                 g
+P8.11                            GPIO_45                 d
+P8.12                            GPIO_44                 e
+P8.14                            GPIO_26                 f
+P8.16                            GPIO_46                 g
 */
 
 #define GPIO_66     66
