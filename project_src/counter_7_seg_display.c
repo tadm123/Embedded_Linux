@@ -394,14 +394,66 @@ void start_downcounting(int delay_value_ms)
     }
 }
 
-void start_updowncounting(int delay_value)
+void start_updowncounting(int delay_value_ms)
 {
-    printf("/* DIY : Student has to implement this */\n");
+    int number = 0;
+    int counting_up = 1; // Start by counting up
+
+    if (initialize_all_gpios() < 0)
+    {
+        printf("Error: GPIO initialization failed!\n");
+        return;
+    }
+
+    printf("UP-DOWN COUNTING.......\n");
+
+    while (1)
+    {
+        Write_number_to_7segdisplay(number);
+        usleep(delay_value_ms * 1000); // Delay in microseconds
+
+        if (counting_up)
+        {
+            number++;
+            if (number > 9)
+            {
+                counting_up = 0; // Switch to counting down
+                number = 9;      // Set number to max before going down
+            }
+        }
+        else
+        {
+            number--;
+            if (number < 0)
+            {
+                counting_up = 1; // Switch to counting up
+                number = 0;      // Set number to min before going up
+            }
+        }
+    }
 }
 
-void start_randomcounting(int delay_value)
+void start_randomcounting(int delay_value_ms)
 {
-    printf("/* DIY : Student has to implement this */\n");
+    int number;
+
+    if (initialize_all_gpios() < 0)
+    {
+        printf("Error: GPIO initialization failed!\n");
+        return;
+    }
+
+    printf("RANDOM COUNTING.......\n");
+
+    // Seed the random number generator
+    srand(time(NULL));
+
+    while(1)
+    {
+        number = rand() % 10; // Generate a random number between 0 and 9
+        Write_number_to_7segdisplay(number);
+        usleep(delay_value_ms * 1000); // Delay in microseconds
+    }
 }
 
 int main(int argc, char *argv[]) {
